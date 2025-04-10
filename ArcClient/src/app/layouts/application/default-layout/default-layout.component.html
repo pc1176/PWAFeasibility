@@ -1,0 +1,49 @@
+<div
+  *ngIf="loading"
+  class="fade show"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh"
+>
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>
+
+<!--sidebar-->
+<c-sidebar *ngIf="!loading"
+  #sidebar1="cSidebar"
+  class="d-print-none sidebar sidebar-fixed border-end"
+  id="sidebar1"
+  visible
+>
+  <c-sidebar-header class="border-bottom">
+    <c-sidebar-brand [routerLink]="['/dashboard']">
+      <img src="assets/images/MatrixComSec_Logo.png" height="30" alt="Matrix Comsec" class="sidebar-brand-full ng-star-inserted">
+    </c-sidebar-brand>
+  </c-sidebar-header>
+
+  <ng-scrollbar #scrollbar="ngScrollbar" (updated)="onScrollbarUpdate(scrollbar.state)" class="overflow" pointerEventsMethod="scrollbar" visibility="hover">
+    <c-sidebar-nav #overflow [navItems]="navItems" dropdownMode="close" compact />
+  </ng-scrollbar>
+  @if (!sidebar1.narrow) {
+    <c-sidebar-footer cSidebarToggle="sidebar1" class="border-top d-none d-lg-flex" toggle="unfoldable" style="cursor: pointer;">
+      <button cSidebarToggler aria-label="Toggle sidebar fold"></button>
+    </c-sidebar-footer>
+  }
+</c-sidebar>
+
+<!--main-->
+<div *ngIf="!loading" class="wrapper d-flex flex-column min-vh-100">
+    <!--app-header-->
+    <app-default-header
+      [cShadowOnScroll]="'sm'"
+      class="d-print-none header header-sticky p-0 shadow-sm"
+      position="sticky"
+      sidebarId="sidebar1"
+    />
+    <!--app-body-->
+    <div class="body flex-grow-1 p-3">
+      <router-outlet />
+    </div>
+    <!--app footer-->
+    <app-default-footer />
+  </div>
+  

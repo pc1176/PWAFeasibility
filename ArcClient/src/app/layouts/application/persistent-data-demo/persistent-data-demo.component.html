@@ -1,0 +1,61 @@
+<div class="container my-4">
+    <h2>Persistent Data Demo</h2>
+    
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3>User Preferences</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="preferencesForm" (ngSubmit)="savePreferences()">
+          <div class="mb-3">
+            <label for="theme" class="form-label">Theme</label>
+            <select id="theme" class="form-select" formControlName="theme">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+              <option value="system">System</option>
+            </select>
+          </div>
+          
+          <div class="mb-3">
+            <label for="fontSize" class="form-label">Font Size: {{ preferencesForm.get('fontSize')?.value }}px</label>
+            <input type="range" class="form-range" id="fontSize" min="12" max="24" formControlName="fontSize">
+          </div>
+          
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="notifications" formControlName="notifications">
+            <label class="form-check-label" for="notifications">Enable Notifications</label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Save Preferences</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3>Persistent Notes</h3>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="noteInput" class="form-label">Your Note</label>
+          <textarea 
+            id="noteInput" 
+            class="form-control" 
+            rows="3" 
+            [formControl]="noteControl"
+            placeholder="Type a note that will persist even when you close the browser..."></textarea>
+        </div>
+        <button (click)="saveNote()" class="btn btn-primary">Save Note</button>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-header">
+        <h3>Last Visit Information</h3>
+      </div>
+      <div class="card-body">
+        <p *ngIf="lastVisit">You last visited this page on: {{ formatDate(lastVisit) }}</p>
+        <p *ngIf="!lastVisit">This is your first visit!</p>
+      </div>
+    </div>
+  </div>

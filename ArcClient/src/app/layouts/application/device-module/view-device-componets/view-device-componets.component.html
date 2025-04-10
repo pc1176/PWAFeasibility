@@ -1,0 +1,33 @@
+<div
+  *ngIf="loading"
+  class="fade show"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh"
+>
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>
+
+<div *ngIf="!loading" class="container">
+    <h3>Components for Device ID: {{ deviceId }}</h3>
+    <table cTable bordered [responsive]="true">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Type</th>
+          <th scope="col">Profiles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let component of components">
+          <td>{{ component.name }}</td>
+          <td>{{ getDescription(ComponentType, component.type) }}</td>
+          <td>
+            <button *ngIf="component.type === ComponentType.Camera" cButton color="info" variant="outline" size="sm" (click)="showProfiles(component.deviceId, component.componentId)">
+              <svg cIcon class="my-1" name="cilArrowRight" size="lg"></svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

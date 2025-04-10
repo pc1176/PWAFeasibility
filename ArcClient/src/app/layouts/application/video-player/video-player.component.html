@@ -1,0 +1,49 @@
+<div
+  *ngIf="loading"
+  class="fade show"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh"
+>
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>
+
+<div class="video-player">
+
+  <div class="layout-selector">
+    <label for="layout" class="mx-2">Select Layout:</label>
+    <select id="layout" (change)="updateStreamFormat($event)">
+      <option value="0" selected>
+        HLS
+      </option>
+      <option value="1">
+        WebRTC
+      </option>
+    </select>
+    <button class="btn btn-dark btn-sm mx-2" (click)="toggleFullscreen()">
+      <i class="fas fa-expand"></i>
+    </button>
+  </div>
+
+  <div id="message"></div>
+
+  <div id="video-container" class="video-container">
+    <video id="video" controls autoplay playsinline></video>
+    <div class="d-none d-md-flex ms-auto my-2">
+      <a class="mx-2" cNavLink *ngIf="!isPlaying" (click)="playVideo()">
+        <svg cIcon name="cilMediaPlay" size="lg"></svg>
+      </a>
+      <a class="mx-2" cNavLink *ngIf="isPlaying" (click)="stopVideo()">
+        <svg cIcon name="cilMediaPause" size="lg"></svg>
+      </a>
+      <a class="mx-2" cNavLink (click)="toggleMute()">
+        <svg *ngIf="!video?.muted" cIcon name="cilVolumeHigh" size="lg"></svg>
+        <svg *ngIf="video?.muted" cIcon name="cilVolumeOff" size="lg"></svg>
+      </a>
+      <input class="mx-2" type="range" min="0" max="1" step="0.1" (input)="setVolume($event)" />
+      <a class="mx-2" cNavLink (click)="togglePIP()">
+
+        <svg cIcon name="cilClone" size="lg"></svg>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div
+  *ngIf="loading"
+  class="fade show"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh"
+>
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>
+<div *ngIf="!loading" class="d-flex justify-content-end mb-3">
+  <button
+    cButton
+    color="primary"
+    variant="outline"
+    size="sm"
+    (click)="shareDeviceList()"
+    class="me-2"
+  >
+    <svg cIcon class="my-1 me-1" name="cilShareAlt" size="sm"></svg>
+    Share Device List
+  </button>
+</div>
+<table *ngIf="!loading" cTable bordered [responsive]="true">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">HTTP Port</th>
+      <th scope="col">RTSP Port</th>
+      <th scope="col">Type</th>
+      <th scope="col">Username</th>
+      <th scope="col">Password</th>
+      <th scope="col">Components</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let device of devices">
+      <th scope="row">{{ device.id }}</th>
+      <td>{{ device.name }}</td>
+      <td>{{ device.address }}</td>
+      <td>{{ device.httpPort }}</td>
+      <td>{{ device.rtspPort }}</td>
+      <td>{{ getDescription(DeviceType, device.type) }}</td>
+      <td>{{ device.userName }}</td>
+      <td>{{ device.password }}</td>
+      <td>
+        <button
+          cButton
+          color="info"
+          variant="outline"
+          size="sm"
+          (click)="showComponents(device.id)"
+        >
+          <svg cIcon class="my-1" name="cilArrowRight" size="lg"></svg>
+        </button>
+      </td>
+      <td>
+        <button
+          cButton
+          color="danger"
+          variant="outline"
+          size="sm"
+          (click)="deleteDevice(device.id)"
+        >
+          <svg cIcon class="my-1" name="cilTrash" size="lg"></svg>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

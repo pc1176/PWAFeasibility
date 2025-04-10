@@ -1,0 +1,26 @@
+<div id="map"></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div *ngIf="maplocation">
+    Latitude: {{maplocation.latitude}}<br>
+    Longitude: {{maplocation.longitude}}<br>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+  
+  <div id="logs">
+    <p *ngIf="logs.length === 0">No logs available.</p>
+    <ul *ngIf="logs.length > 0">
+      <li *ngFor="let log of logs">{{ log.time }}: {{ log.message }}</li>
+    </ul>
+  </div>
+  <button (click)="goToDashboard()" class="back-button">Back to Dashboard</button>

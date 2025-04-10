@@ -1,0 +1,167 @@
+<c-container class="justify-content-md-between">
+
+<form
+  #customStylesForm="ngForm"
+  (ngSubmit)="onSubmit()"
+  [validated]="customStylesValidated"
+  cForm
+  class="needs-validation"
+  novalidate
+>
+  <h1 class="text-center">Add Device</h1>
+  <c-row class="mb-3">
+    <label cLabel class="col-sm-2 col-form-label" for="deviceName">
+      Device Name
+    </label>
+    <c-col sm="10">
+      <input
+        autoComplete="device-name"
+        cFormControl
+        placeholder="Device Name"
+        name="deviceName"
+        id="deviceName"
+        [(ngModel)]="deviceForm.Name"
+        required
+      />
+      <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      <c-form-feedback [valid]="false">Please enter a valid device name.</c-form-feedback>
+    </c-col>
+  </c-row>
+
+  <c-row class="mb-3">
+    <label cLabel class="col-sm-2 col-form-label" for="ipAddress">
+      IP Address
+    </label>
+    <c-col sm="10">
+      <input
+        autoComplete="ip-address"
+        cFormControl
+        placeholder="IP Address"
+        name="ipAddress"
+        id="ipAddress"
+        [(ngModel)]="deviceForm.Address"
+        required
+      />
+      <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      <c-form-feedback [valid]="false">Please enter a valid IP address.</c-form-feedback>
+    </c-col>
+  </c-row>
+
+  <c-row class="mb-3">
+    <label cLabel class="col-sm-2 col-form-label" for="httpPort">
+      HTTP Port
+    </label>
+    <c-col sm="10">
+      <input
+        autoComplete="http-port"
+        cFormControl
+        placeholder="HTTP Port"
+        type="number"
+        name="httpPort"
+        id="httpPort"
+        [(ngModel)]="deviceForm.HttpPort"
+        required
+      />
+      <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      <c-form-feedback [valid]="false">Please enter a valid HTTP port.</c-form-feedback>
+    </c-col>
+  </c-row>
+
+  <c-row class="mb-3">
+    <label cLabel class="col-sm-2 col-form-label" for="rtspPort">
+      RTSP Port
+    </label>
+    <c-col sm="10">
+      <input
+        autoComplete="rtsp-port"
+        cFormControl
+        placeholder="RTSP Port"
+        type="number"
+        name="rtspPort"
+        id="rtspPort"
+        [(ngModel)]="deviceForm.RtspPort"
+        required
+      />
+      <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      <c-form-feedback [valid]="false">Please enter a valid RTSP port.</c-form-feedback>
+    </c-col>
+  </c-row>
+
+  <c-row class="mb-3">
+    <label cLabel class="col-sm-2 col-form-label" for="deviceUsername">
+      Device Username
+    </label>
+    <c-col sm="10">
+      <input
+        autoComplete="device-username"
+        cFormControl
+        placeholder="Device Username"
+        name="deviceUsername"
+        id="deviceUsername"
+        [(ngModel)]="deviceForm.UserName"
+        required
+      />
+      <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      <c-form-feedback [valid]="false">Please enter a valid device username.</c-form-feedback>
+    </c-col>
+  </c-row>
+
+  <c-row class="mb-4">
+    <label cLabel class="col-sm-2 col-form-label" for="devicePassword">
+      Device Password
+    </label>
+    <c-col sm="10">
+      <input
+        autoComplete="device-password"
+        cFormControl
+        placeholder="Device Password"
+        type="password"
+        name="devicePassword"
+        id="devicePassword"
+        [(ngModel)]="deviceForm.Password"
+        required
+      />
+      <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      <c-form-feedback [valid]="false">Please enter a valid device password.</c-form-feedback>
+    </c-col>
+  </c-row>
+
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Device Type</legend>
+    <c-col sm="10">
+      <c-form-check>
+        <input
+          cFormCheckInput
+          id="deviceTypeCamera"
+          name="deviceType"
+          type="radio"
+          [value]="1"
+          [(ngModel)]="deviceForm.Type"
+          required
+        />
+        <label cFormCheckLabel for="deviceTypeCamera">IP Camera</label>
+      </c-form-check>
+      <c-form-check>
+        <input
+          cFormCheckInput
+          id="deviceTypeNVR"
+          name="deviceType"
+          type="radio"
+          [value]="2"
+          [(ngModel)]="deviceForm.Type"
+          required
+        />
+        <label cFormCheckLabel for="deviceTypeNVR">NVR</label>
+      </c-form-check>
+    </c-col>
+  </fieldset>
+
+  <c-row class="mb-3">
+    <c-col sm="10" class="offset-sm-2">
+      <button cButton type="submit" color="primary">Add Device</button>
+    </c-col>
+  </c-row>
+
+</form>
+
+</c-container>

@@ -1,0 +1,62 @@
+<div
+  *ngIf="loading"
+  class="fade show"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh"
+>
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>
+
+<div *ngIf="!loading" class="container">
+  <h3 class="my-3">
+    Stream Profiles for Device ID: {{ deviceId }}, Component ID:
+    {{ componentId }}
+  </h3>
+
+  <table cTable bordered [responsive]="true">
+    <thead>
+      <tr>
+        <th scope="col">Profile No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Video Codec</th>
+        <th scope="col">Resolution</th>
+        <th scope="col">Audio Codec</th>
+        <th scope="col">Bitrate Control</th>
+        <th scope="col">Bitrate</th>
+        <th scope="col">FPS</th>
+        <th scope="col">Quality</th>
+        <th scope="col">GOP</th>
+        <th scope="col">Enable Audio</th>
+        <th scope="col">RTSP URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let profile of profiles">
+        <td>{{ profile.no }}</td>
+        <td class="d-md-flex">
+          <input
+            cFormControl
+            id="profileName"
+            name="profileName"
+            type="text"
+            [(ngModel)]="profile.name"
+            required
+          />
+          <button cButton color="info" variant="outline" size="sm" (click)="update(profile.id)">
+            <svg cIcon class="my-1" name="cilSave" size="lg"></svg>
+          </button>
+        </td>
+        <td>{{ getDescription(VideoCodec, profile.videoCodec) }}</td>
+        <td>{{ getDescription(VideoResolution, profile.resolution) }}</td>
+        <td>{{ getDescription(AudioCodec, profile.audioCodec) }}</td>
+        <td>{{ profile.bitrateControl === 1 ? "CBR" : "VBR" }}</td>
+        <td>{{ profile.bitrate }} kbps</td>
+        <td>{{ profile.fps }}</td>
+        <td>{{ profile.quality }}</td>
+        <td>{{ profile.gop }}</td>
+        <td>{{ profile.enableAudio ? "Yes" : "No" }}</td>
+        <td>{{ profile.url }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,15 @@
+<c-row [gutter]="4" class="mb-3" [md]="3" [xs]="1">
+  <c-col *ngFor="let card of cards">
+    <c-card class="h-100">
+      <img cCardImg="top" src="{{ card.img }}" />
+      <c-card-body>
+        <a cNavLink [routerLink]="card.route">
+          <h5 cCardTitle>{{ card.title }}</h5>
+          <p cCardText>
+            {{ card.body }}
+          </p>
+        </a>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

@@ -1,0 +1,110 @@
+<div
+  *ngIf="loading"
+  class="fade show"
+  style="text-align: center; padding-top: calc(100vh / 2); height: 100vh"
+>
+  <i class="spinner-grow spinner-grow-sm"></i>
+  <span class="m-1">Loading...</span>
+</div>
+
+<div
+  *ngIf="!loading"
+  class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center"
+>
+  <c-container breakpoint="md">
+    <c-row class="justify-content-center">
+      <c-col lg="10" xl="8">
+        <c-card-group>
+          <c-card class="p-4">
+            <c-card-body>
+              <form
+                #customStylesForm="ngForm"
+                (ngSubmit)="onLogin()"
+                [validated]="customStylesValidated"
+                cForm
+                class="needs-validation"
+                novalidate
+              >
+                <h1>Login</h1>
+                <p class="text-body-secondary">Sign In to your account</p>
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilUser"></svg>
+                  </span>
+                  <input
+                    autoComplete="username"
+                    cFormControl
+                    placeholder="Username"
+                    name="username"
+                    [(ngModel)]="loginForm.username"
+                    required
+                  />
+                  <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+                  <c-form-feedback [valid]="false"
+                    >Please enter a valid username.</c-form-feedback
+                  >
+                </c-input-group>
+                <c-input-group class="mb-4">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input
+                    autoComplete="current-password"
+                    cFormControl
+                    placeholder="Password"
+                    type="password"
+                    name="password"
+                    [(ngModel)]="loginForm.password"
+                    required
+                  />
+                  <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+                  <c-form-feedback [valid]="false"
+                    >Please enter a valid password.</c-form-feedback
+                  >
+                </c-input-group>
+                <c-row>
+                  <c-col xs="6">
+                    <button cButton class="px-4" color="primary" type="submit">
+                      Login
+                    </button>
+                  </c-col>
+                  <c-col class="text-right" xs="6">
+                    <button cButton class="px-0" color="link">
+                      Forgot password?
+                    </button>
+                  </c-col>
+                </c-row>
+              </form>
+            </c-card-body>
+          </c-card>
+          <c-card
+            [ngStyle]="{ 'minWidth.%': 44 }"
+            class="text-white bg-primary py-5"
+          >
+            <c-card-body class="text-center">
+              <div>
+                <h2>Sign up</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button
+                  [active]="true"
+                  cButton
+                  class="mt-3"
+                  color="primary"
+                  [routerLink]="['/register']"
+                >
+                  Register Now!
+                </button>
+              </div>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+  
+</div>
+<label>Device ID:</label>
+  <p>{{ deviceId }}</p>

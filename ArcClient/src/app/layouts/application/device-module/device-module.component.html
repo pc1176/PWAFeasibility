@@ -1,0 +1,14 @@
+<div class="d-md-flex mb-3 justify-content-md-between">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <button cButton color="primary" class="me-md-2" (click)="goBack()">Back</button>
+        <!-- cil-arrow-left -->
+
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <button cButton color="primary" class="me-md-2" [routerLink]="['/deviceManagement/addDevice']">Add Device</button>
+        <button cButton color="primary" class="me-md-2" [routerLink]="['/deviceManagement/viewDevice']">View Device</button>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
+

@@ -1,0 +1,21 @@
+<div class="playback-container">
+  <div class="layout-selector">
+    <label for="layout" class="mx-2">Select Layout:</label>
+    <select id="layout" [(ngModel)]="layout" (change)="updateGrid()">
+      <option *ngFor="let option of layoutOptions" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
+    <button class="btn btn-dark btn-sm mx-2" (click)="toggleFullscreen()">
+      <i class="fas fa-expand"></i>
+    </button>
+  </div>
+
+  <div class="video-grid"
+       [ngStyle]="{'grid-template-columns': gridTemplateColumns, 'grid-template-rows': gridTemplateRows}"
+       #videoGrid>
+    <div *ngFor="let i of layoutArray" class="video-item">
+      <app-video-layout></app-video-layout>
+    </div>
+  </div>
+</div>
